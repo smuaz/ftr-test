@@ -1,0 +1,10 @@
+<% header = link_to('All Complaints ', complaints_path) + "&raquo; #{@state.name}".html_safe %>
+<%= render 'shared/content_title', title: header %>
+
+<% if @state.complaints.blank? %>
+  <p>No complaints yet for this state.</p>
+<% else %>
+  <% @state.complaints.each do |complaint| %>
+    <%= render 'complaints/complaint', complaint: complaint %>
+  <% end %>
+<% end %>

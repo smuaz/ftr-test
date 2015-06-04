@@ -1,0 +1,82 @@
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <%= link_to "Complaints", complaints_path %>
+          </li>
+          <li class="dropdown">
+            <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+            Categories <span class='caret'></span>
+            <% end %>
+            <ul class='dropdown-menu'>
+              <% Category.all.each do |category| %>
+              <li><%= link_to category.name, category_path(category) %></li>
+               <% end %>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+            States <span class='caret'></span>
+            <% end %>
+            <ul class='dropdown-menu'>
+            <% State.all.each do |state| %>
+              <li><%= link_to state.name, state_path(state) %></li>
+            <% end %>
+            </ul>
+          </li>
+
+          <% if logged_in? %>
+            <% if admin? %>
+              <li>
+                <%= button_to 'New User', new_user_path, class: 'btn btn-warning navbar-btn', method: 'get' %>
+              </li>
+              <li>
+                <%= button_to 'New Complaint', new_complaint_path, class: 'btn btn-primary navbar-btn', method: 'get' %>
+              </li>
+            <% else %>
+              <li>
+                <%= button_to 'New Complaint', new_complaint_path, class: 'btn btn-primary navbar-btn', method: 'get' %>
+              </li>
+              <li>
+                <%= button_to 'My Complaints', mycomplaints_path, class: 'btn btn-success navbar-btn', method: 'get' %>
+              </li>
+            <% end %>
+          <li class="dropdown">
+            <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+            <%= current_user.nickname %> <span class='caret'></span>
+            <% end %>
+            <ul class='dropdown-menu'>
+            <% if admin? %>
+              <li><%= link_to admin_path(current_user), method: 'delete' do %>
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                  Log Out
+                <% end %>
+              </li> 
+              <% else %>
+              <li><%= link_to edit_user_path(current_user) do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  Edit Profile
+                <% end %>
+              </li>
+              <li><%= link_to user_path(current_user) do %>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  View Profile
+                <% end %>
+              </li>  
+              <li><%= link_to logout_path do %>
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                  Log Out
+                <% end %>
+              </li> 
+             
+              <% end %>
+            </ul>
+          </li>
+          <% else %>
+          <li>
+            <%= button_to 'Sign Up', signup_path, class: 'btn btn-primary navbar-btn', method: 'get' %>
+          </li>
+          <li>
+            <%= button_to 'Log In', login_path, class: 'btn btn-success navbar-btn', method: 'get' %>
+          </li>
+          <% end %>
+        </ul>

@@ -1,0 +1,31 @@
+<%= render 'shared/content_title', title: 'My Complaints' %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class='<%= 'active' if params[:tab].nil? %>'>
+    <%= link_to "Complaints (#{current_user.complaints.size})", mycomplaints_path(current_user) %>
+  </li>
+  <li role="presentation" class='<%= 'active' if params[:tab] == 'favourites' %>'>
+    <%= link_to "Favourites (#{current_user.favourites.size})", mycomplaints_path(current_user, tab: 'favourites') %>
+  </li>
+  <li role="presentation" class='<%= 'active' if params[:tab] == 'comments' %>'>
+    <%= link_to "Comments (#{current_user.comments.size})", mycomplaints_path(current_user, tab: 'comments') %>
+  </li>
+</ul>
+<br/>
+<p>
+
+<% if params[:tab].nil? %>
+
+  <% current_user.complaints.each do |complaint| %>
+    <%= render 'complaints/complaint', complaint: complaint %>
+  <% end %>
+<% elsif  params[:tab] == 'comments' %>
+  <% current_user.comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment, show_complaint: true %>
+  <% end %>
+<% elsif  params[:tab] == 'favourites' %>
+  <% current_user.favourites.each do |fav| %>
+    <%= render 'complaints/complaint', complaint: fav.complaint %>
+  <% end %>
+<% end %>
+</p>

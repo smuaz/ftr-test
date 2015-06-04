@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-2 well text-center">
+    <%= link_to vote_complaint_path(complaint, vote: true), method: 'post', remote: true do %>
+    <span class="glyphicon glyphicon-thumbs-up btn-lg" aria-hidden="true"></span>
+    <% end %>
+    <br/>
+    <small><span id='complaint_<%= complaint.to_param %>_votes'><%= complaint.total_votes %> votes</span>
+    <br/>
+    <%= render 'complaints/status', complaint: complaint %>
+</small>
+  </div>
+  <div class="col-md-8 well">
+    <%= render complaint.category %> <%= render complaint.state %>
+    <h4><%= link_to complaint.title, complaint_path(complaint) %></h4>
+    <p><%= complaint.detail %></p>
+    <p>
+      <span class="quiet">posted by</span> <%= link_to complaint.user.nickname, user_path(complaint.user) %>
+      <small>at <%= display_datetime(complaint.created_at) %></small>
+    </p>    
+      <small>
+        <span>
+          <%= link_to("#{complaint.comments.size} comments", complaint_path(complaint)) %>
+        </span>
+      </small>
+      <div class="pull-right" id='complaint_<%= complaint.to_param %>_favs'>
+      <% if logged_in? %>
+        <% if has_favourite?(complaint) %>
+          <%= render 'complaints/fav', complaint: complaint %>
+        <% else %>
+          <%= render 'complaints/unfav', complaint: complaint %>
+        <% end %>
+      <% end %>
+      </div>
+
+    </div>
+  
+  
+</div>

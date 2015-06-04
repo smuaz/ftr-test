@@ -1,0 +1,6 @@
+<% if admin? %>
+  <%= render 'shared/content_title', title: 'Create a new user' %>
+<% else %>
+  <%= render 'shared/content_title', title: 'Sign Up' %>
+<% end %>
+<%= render 'form' %>

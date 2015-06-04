@@ -1,0 +1,49 @@
+<%= render 'shared/errors', obj: @complaint %>
+
+<div class="well">
+<%= form_for @complaint, :html => { :class => "form-horizontal" } do |f| %>
+  <% if admin? %>
+  <div class="form-group">
+    <%= f.label 'User', class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.collection_select(:user_id, User.all, :id, :nickname, {prompt: "Select a user"}, {class: "form-control"}) %>  Or <%= link_to 'create a new user', new_user_path %>
+    </div> 
+  </div>
+  <div class="form-group">
+    <%= f.label 'Status', class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.collection_select(:status_id, Status.all, :id, :name, {prompt: "Select status"}, {class: "form-control"}) %>
+    </div> 
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :title, class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_field :title, class: "form-control", placeholder: 'Title' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Categories', class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: "Select a category"}, {class: "form-control"}) %> 
+    </div> 
+  </div>
+  <div class="form-group">
+    <%= f.label 'States', class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.collection_select(:state_id, State.all, :id, :name, {prompt: "Select a state"}, {class: "form-control"}) %>  
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :detail, class: "col-sm-2 control-label" %>
+    <div class="col-xs-4">
+      <%= f.text_area :detail, class: "form-control", placeholder: 'Detail of your complaint...', rows: 5 %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit(@complaint.new_record? ? 'Submit Complaint' : 'Update Complaint', class: 'btn btn-primary') %>
+    </div>
+  </div>
+<% end %>  
+</div>

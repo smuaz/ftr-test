@@ -1,0 +1,19 @@
+  <% show_complaint ||= false %>
+
+  <% if comment.admin.nil? %>
+    <div class="well span8">
+  <% else %>
+    <div class="well span8 admin">
+  <% end %>
+    <em>"<%= comment.body %>"</em>
+    <% if show_complaint %>
+    On <%= link_to comment.complaint.title, complaint_path(comment.complaint) %>
+    <% end %>
+    <br/>
+    <% if comment.admin.nil? %>
+      <span class="quiet">posted by</span> <%= link_to comment.user.nickname, user_path(comment.user) %>
+    <% else %>
+      <span class="quiet">posted by</span> Admin
+    <% end %>
+  </div>
+  

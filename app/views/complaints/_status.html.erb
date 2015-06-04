@@ -1,0 +1,11 @@
+<% if complaint.status_id == 1 %>
+  <span class="label label-info">New</span>
+<% elsif complaint.status_id == 2 %>
+  <span class="label label-warning">In Process</span>
+<% elsif complaint.status_id == 3 %>
+  <span class="label label-success">Addressed</span>
+<% elsif complaint.status_id == 4 %>
+  <span class="label label-danger">Rejected</span>
+<% else %>
+  <span class="label label-default">New</span>
+<% end %>

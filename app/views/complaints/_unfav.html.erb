@@ -1,0 +1,3 @@
+<%= link_to complaint_favourite_path(complaint, complaint.favourites.first), method: 'delete', remote: true do %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Unfav this
+<% end %>

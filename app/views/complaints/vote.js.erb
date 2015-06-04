@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+ $('#complaint_<%=@complaint.to_param%>_votes').html('<%= @complaint.total_votes %> votes');
+<% else %>
+  alert('You can only vote on the post once')
+<% end %>

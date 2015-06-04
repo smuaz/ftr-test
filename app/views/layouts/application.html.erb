@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForTheRakyat.com </title>
+  <meta name="description" content="ForTheRakyat.com - Our priorities for the rakyat">
+  <meta name="author" content="">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+ 
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <%= link_to "ForTheRakyat", root_path, class: 'navbar-brand' %>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <%= render 'layouts/navigation' %>
+      </div>
+    </div>
+  </nav>
+
+</header>
+  
+  <div class="container">
+    <div class="row">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+    </div>
+  </div>
+  <p>
+  <%= render 'layouts/footer' %>
+  </p>
+</body>
+</html>
