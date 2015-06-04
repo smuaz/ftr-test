@@ -37,7 +37,7 @@ Status.create(name: 'In Process')
 Status.create(name: 'Addressed')
 Status.create(name: 'Rejected')
 
-Admin.create(name: 'Superadmin', nickname: 'admin', password: 'test123', status: 'active')
+Admin.create(name: 'Superadmin', nickname: 'admin', email: 'admin@ftr.com', password: 'test123', phone: '1234567', status: 'active')
 
 
 
